@@ -1,0 +1,55 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class LoginApp {
+    public static void main(String[] args) {
+        // Create the main frame
+        JFrame frame = new JFrame("Login Page");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300, 150);
+
+        // Create a panel to hold components
+        JPanel panel = new JPanel();
+        frame.add(panel);
+
+        // Create labels, text fields, and button
+        JLabel userLabel = new JLabel("Username:");
+        JTextField userField = new JTextField(20);
+
+        JLabel passLabel = new JLabel("Password:");
+        JPasswordField passField = new JPasswordField(20);
+
+        JButton loginButton = new JButton("Login");
+
+        // Add components to the panel
+        panel.add(userLabel);
+        panel.add(userField);
+        panel.add(passLabel);
+        panel.add(passField);
+        panel.add(loginButton);
+
+        // Create an ActionListener for the Login button
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String username = userField.getText();
+                char[] password = passField.getPassword(); // Use getPassword for password field
+
+                // You can implement your login logic here, e.g., check credentials
+                if (username.equals("admin") && String.valueOf(password).equals("password")) {
+                    JOptionPane.showMessageDialog(frame, "Login successful!");
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Login failed. Please try again.");
+                }
+
+                // Clear the password field after login attempt
+                passField.setText("");
+            }
+        });
+
+        // Set the frame to be visible
+        frame.setVisible(true);
+    }
+}
